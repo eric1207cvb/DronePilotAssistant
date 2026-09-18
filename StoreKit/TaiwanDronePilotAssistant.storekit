@@ -1,0 +1,76 @@
+{
+  "appPolicies" : {
+    "eula" : "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
+    "policies" : [
+      {
+        "locale" : "zh_TW",
+        "policyText" : "Taiwan Drone Pilot Assistant 本地測試購買方案。",
+        "policyURL" : "https://eric1207cvb.github.io/DronePilotAssistant/privacy-policy.html"
+      }
+    ]
+  },
+  "identifier" : "DPA00101",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "zh_TW",
+    "_storefront" : "TWN"
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "DPA00001",
+      "localizations" : [
+        {
+          "description" : "Taiwan Drone Pilot Pro 訂閱方案",
+          "displayName" : "Taiwan Drone Pilot Pro",
+          "locale" : "zh_TW"
+        }
+      ],
+      "name" : "Taiwan Drone Pilot Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "60.00",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "DPA00002",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "每月訂閱 Pro 會員，移除廣告並解鎖完整飛行輔助功能",
+              "displayName" : "Pro Monthly",
+              "locale" : "zh_TW"
+            },
+            {
+              "description" : "Monthly Pro membership with ads removed",
+              "displayName" : "Pro Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.taiwandronepilot.assistant.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly",
+          "subscriptionGroupID" : "DPA00001",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
