@@ -350,17 +350,19 @@ struct ContentView: View {
             Button { openCAAQuery() } label: {
                 VStack(spacing: 5) {
                     Label("民航局真實圖資", systemImage: "map.fill")
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.system(size: 10, weight: .medium, design: .rounded))
                         .multilineTextAlignment(.center)
+                    Spacer(minLength: 0)
                     Text("官方 GIS 查詢")
-                        .font(.system(size: 9, weight: .medium))
-                        .opacity(0.9)
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.5)
                 }
                 .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, minHeight: 145)
+                .frame(maxWidth: .infinity, minHeight: 70)
                 .padding(.vertical, 6)
                 .padding(.horizontal, 2)
-                .background(Color.blue, in: RoundedRectangle(cornerRadius: 12))
+                .glassEffect(.regular.tint(.blue.opacity(0.75)).interactive(), in: RoundedRectangle(cornerRadius: 12))
             }
             .buttonStyle(.plain)
         }
