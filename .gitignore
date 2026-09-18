@@ -1,0 +1,17 @@
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+
+# Node/Xcode generated files
+node_modules/
+DerivedData/
+build/
+.DS_Store
+*.xcuserstate
+xcuserdata/
+IMG_4895.PNG
+
+# Local editor and OS metadata
+.idea/
+.vscode/
