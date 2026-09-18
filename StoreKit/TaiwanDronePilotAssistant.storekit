@@ -9,7 +9,7 @@
       }
     ]
   },
-  "identifier" : "DPA00101",
+  "identifier" : "DFA00101",
   "nonRenewingSubscriptions" : [
 
   ],
@@ -23,7 +23,7 @@
   },
   "subscriptionGroups" : [
     {
-      "id" : "DPA00001",
+      "id" : "DFA00001",
       "localizations" : [
         {
           "description" : "Taiwan Drone Pilot Pro 訂閱方案",
@@ -43,7 +43,7 @@
           "displayPrice" : "60.00",
           "familyShareable" : false,
           "groupNumber" : 1,
-          "internalID" : "DPA00002",
+          "internalID" : "DFA00002",
           "introductoryOffer" : null,
           "localizations" : [
             {
@@ -60,7 +60,7 @@
           "productID" : "com.taiwandronepilot.assistant.pro.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Pro Monthly",
-          "subscriptionGroupID" : "DPA00001",
+          "subscriptionGroupID" : "DFA00001",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
 
