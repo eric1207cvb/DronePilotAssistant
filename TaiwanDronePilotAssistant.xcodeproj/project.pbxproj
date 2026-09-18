@@ -28,6 +28,7 @@
 		A1000000000000000000000F /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		A10000000000000000000015 /* NoFlyZones.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NoFlyZones.json; sourceTree = "<group>"; };
 		A10000000000000000000016 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A10000000000000000000019 /* TaiwanDronePilotAssistant.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = TaiwanDronePilotAssistant.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,9 +72,18 @@
 				A10000000000000000000015 /* NoFlyZones.json */,
 				A1000000000000000000000E /* Info.plist */,
 				A10000000000000000000016 /* Assets.xcassets */,
+				A10000000000000000000018 /* StoreKit */,
 			);
 			name = TaiwanDronePilotAssistant;
 			path = .;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000018 /* StoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000019 /* TaiwanDronePilotAssistant.storekit */,
+			);
+			path = StoreKit;
 			sourceTree = "<group>";
 		};
 		A10000000000000000000005 /* Frameworks */ = {
