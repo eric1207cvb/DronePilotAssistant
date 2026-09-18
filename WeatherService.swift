@@ -10,6 +10,9 @@ struct WeatherSnapshot {
     var windMetersPerSecond = "2.2 m/s"
     var windLevel = "蒲福風級 2級"
     var kp = "—"
+    var sunrise = "—"
+    var sunset = "—"
+    var visibility = "—"
     var windDirection = "南"
     var rainChance = "10%"
     var lastUpdated = "示範資料"
@@ -219,6 +222,10 @@ final class WeatherService: ObservableObject {
             snapshot = WeatherSnapshot(condition: weatherValue(values, names: ["天氣現象", "天氣預報綜合描述"]) ?? "—", temperature: (weatherValue(values, names: ["平均溫度", "溫度"]) ?? "—") + "°C", windSpeed: kmh + " km/h", windMetersPerSecond: metersPerSecond.formatted(.number.precision(.fractionLength(1))) + " m/s", windLevel: "蒲福風級 \(beaufort)級", windDirection: weatherValue(values, names: ["風向"]) ?? "—", rainChance: (weatherValue(values, names: ["降雨機率", "3小時降雨機率", "12小時降雨機率"]) ?? "—") + "%", lastUpdated: "CWA 全台 · 剛剛")
             forecast = makeForecast(values)
             windForecast = makeWindForecast(values)
+            let sunTimes = await fetchSunTimes(coordinate: coordinate, authorization: authorization)
+            snapshot.sunrise = sunTimes.sunrise
+            snapshot.sunset = sunTimes.sunset
+            snapshot.visibility = await fetchVisibility(coordinate: coordinate, authorization: authorization)
             snapshot.kp = await fetchKp()
             if forecast.isEmpty { errorMessage = "CWA 已回應，但沒有可用的預報時段" }
             lastRequest = Date(); lastCoordinate = coordinate
@@ -228,20 +235,52 @@ final class WeatherService: ObservableObject {
     }
 }
 
+private struct NOAAKpRow: Decodable {
+    let kpIndex: Double?
+    let estimatedKp: Double?
+
+    enum CodingKeys: String, CodingKey {
+        case kpIndex = "kp_index"
+        case estimatedKp = "estimated_kp"
+    }
+}
+
 private func fetchKp() async -> String {
     guard let url = URL(string: "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json") else { return "—" }
+    var request = URLRequest(url: url)
+    request.timeoutInterval = 10
     do {
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode), let rows = try JSONSerialization.jsonObject(with: data) as? [[Any]] else { return "—" }
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let http = response as? HTTPURLResponse,
+              (200..<300).contains(http.statusCode) else { return "—" }
+
+        let rows = try JSONDecoder().decode([NOAAKpRow].self, from: data)
         for row in rows.reversed() {
-            if let value = row.last as? NSNumber { return value.stringValue }
-            if let value = row.last as? String, Double(value) != nil { return value }
+            if let kpIndex = row.kpIndex {
+                return kpIndex.formatted(.number.precision(.fractionLength(0)))
+            }
+            if let estimatedKp = row.estimatedKp {
+                return estimatedKp.formatted(.number.precision(.fractionLength(1)))
+            }
         }
     } catch { }
     return "—"
 }
 
 private struct CWAResponse: Decodable { let records: Records }
+
+private struct SunResponse: Decodable { let records: SunRecords }
+private struct SunRecords: Decodable { let locations: SunLocations; enum CodingKeys: String, CodingKey { case locations = "locations" } }
+private struct SunLocations: Decodable { let location: [SunLocation]; enum CodingKeys: String, CodingKey { case location = "location" } }
+private struct SunLocation: Decodable { let countyName: String; let time: [SunTime]; enum CodingKeys: String, CodingKey { case countyName = "CountyName"; case time = "time" } }
+private struct SunTime: Decodable { let date: String; let sunrise: String; let sunset: String; enum CodingKeys: String, CodingKey { case date = "Date"; case sunrise = "SunRiseTime"; case sunset = "SunSetTime" } }
+
+private struct VisibilityResponse: Decodable { let records: VisibilityRecords }
+private struct VisibilityRecords: Decodable { let stations: [VisibilityStation]; enum CodingKeys: String, CodingKey { case stations = "Station" } }
+private struct VisibilityStation: Decodable { let geoInfo: VisibilityGeoInfo; let weather: VisibilityWeather; enum CodingKeys: String, CodingKey { case geoInfo = "GeoInfo"; case weather = "WeatherElement" } }
+private struct VisibilityGeoInfo: Decodable { let coordinates: [VisibilityCoordinate]; enum CodingKeys: String, CodingKey { case coordinates = "Coordinates" } }
+private struct VisibilityCoordinate: Decodable { let name: String?; let latitude: String?; let longitude: String?; enum CodingKeys: String, CodingKey { case name = "CoordinateName"; case latitude = "StationLatitude"; case longitude = "StationLongitude" } }
+private struct VisibilityWeather: Decodable { let description: String?; enum CodingKeys: String, CodingKey { case description = "VisibilityDescription" } }
 
 private struct BravePlaceResponse: Decodable { let results: [BravePlaceResult] }
 private struct BravePlaceResult: Decodable { let title: String; let description: String }
@@ -273,6 +312,66 @@ private struct AnyCodingKey: CodingKey {
     init?(intValue: Int) { return nil }
 }
 private func weatherValue(_ elements: [Element], names: [String]) -> String? { for name in names { if let element = elements.first(where: { $0.elementName == name }), let value = element.time.first?.elementValue.first?.value, !value.isEmpty { return value } }; return nil }
+
+private func fetchSunTimes(coordinate: CLLocationCoordinate2D, authorization: String) async -> (sunrise: String, sunset: String) {
+    let placemark = try? await CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)).first
+    guard var county = placemark?.administrativeArea?.trimmingCharacters(in: .whitespacesAndNewlines), !county.isEmpty else { return ("—", "—") }
+    county = county.replacingOccurrences(of: "台", with: "臺")
+
+    var components = URLComponents(string: "https://opendata.cwa.gov.tw/api/v1/rest/datastore/A-B0062-001")!
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.timeZone = TimeZone(identifier: "Asia/Taipei")
+    formatter.dateFormat = "yyyy-MM-dd"
+    components.queryItems = [
+        URLQueryItem(name: "format", value: "JSON"),
+        URLQueryItem(name: "CountyName", value: county),
+        URLQueryItem(name: "Date", value: formatter.string(from: Date()))
+    ]
+
+    do {
+        var request = URLRequest(url: components.url!)
+        request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 10
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { return ("—", "—") }
+        let decoded = try JSONDecoder().decode(SunResponse.self, from: data)
+        guard let row = decoded.records.locations.location.first else { return ("—", "—") }
+        return (row.time.first?.sunrise ?? "—", row.time.first?.sunset ?? "—")
+    } catch {
+        return ("—", "—")
+    }
+}
+
+private func fetchVisibility(coordinate: CLLocationCoordinate2D, authorization: String) async -> String {
+    var components = URLComponents(string: "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001")!
+    components.queryItems = [URLQueryItem(name: "format", value: "JSON")]
+    do {
+        var request = URLRequest(url: components.url!)
+        request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 10
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { return "—" }
+        let decoded = try JSONDecoder().decode(VisibilityResponse.self, from: data)
+        let nearest = decoded.records.stations.min { lhs, rhs in
+            stationDistance(lhs, from: coordinate) < stationDistance(rhs, from: coordinate)
+        }
+        guard let raw = nearest?.weather.description?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !raw.isEmpty, raw != "-99", raw != "X" else { return "—" }
+        return raw.hasSuffix("km") ? raw : "\(raw) km"
+    } catch {
+        return "—"
+    }
+}
+
+private func stationDistance(_ station: VisibilityStation, from coordinate: CLLocationCoordinate2D) -> Double {
+    let position = station.geoInfo.coordinates.first(where: { $0.name == "WGS84" }) ?? station.geoInfo.coordinates.first
+    guard let latitude = position?.latitude.flatMap(Double.init), let longitude = position?.longitude.flatMap(Double.init) else { return .greatestFiniteMagnitude }
+    let lat = (coordinate.latitude - latitude) * 111_000
+    let lon = (coordinate.longitude - longitude) * 102_000
+    return (lat * lat + lon * lon).squareRoot()
+}
 
 private func distance(from coordinate: CLLocationCoordinate2D, to location: Location) -> Double {
     guard let latitude = location.latitude.flatMap(Double.init), let longitude = location.longitude.flatMap(Double.init) else { return .greatestFiniteMagnitude }

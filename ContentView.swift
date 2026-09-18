@@ -326,14 +326,14 @@ struct ContentView: View {
         let value: (String) -> String = { loading ? "—" : $0 }
         return LazyVGrid(columns: columns, spacing: 10) {
             Tile(title: "天氣", value: loading ? "—" : "☁", detail: loading ? "資料更新中" : weatherService.snapshot.condition, color: .cyan.opacity(0.17), valueSize: 42)
-            Tile(title: "日出／日落", value: value("↑ 06:23\n↓ 16:49"), color: .yellow.opacity(0.72), valueSize: 19)
+            Tile(title: "日出／日落", value: value("↑ \(weatherService.snapshot.sunrise)\n↓ \(weatherService.snapshot.sunset)"), color: .yellow.opacity(0.72), valueSize: 19)
             Tile(title: "溫度", value: value(weatherService.snapshot.temperature), color: loading ? .gray.opacity(0.25) : temperatureTileColor, valueSize: 25)
             Tile(title: "風速", value: value(weatherService.snapshot.windSpeed), detail: loading ? nil : weatherService.snapshot.windMetersPerSecond, color: .green.opacity(0.32), valueSize: 24)
             Tile(title: "陣風／風級", value: value(weatherService.snapshot.windLevel), detail: loading ? nil : weatherService.snapshot.windSpeed, color: .green.opacity(0.55), valueSize: 18)
             Tile(title: "風向", value: value("↘"), detail: loading ? nil : weatherService.snapshot.windDirection, color: .green.opacity(0.55), valueSize: 38)
             Tile(title: "降雨機率", value: value(weatherService.snapshot.rainChance), color: .green.opacity(0.55), valueSize: 25)
             Tile(title: "雲覆蓋率", value: value("94%"), color: .green.opacity(0.20), valueSize: 25)
-            Tile(title: "能見度", value: value("4.8 km"), color: .green.opacity(0.55), valueSize: 21)
+            Tile(title: "能見度", value: value(weatherService.snapshot.visibility), color: .green.opacity(0.55), valueSize: 21)
             Tile(title: "定位訊號", value: locationSignal.label, detail: locationSignal.detail, color: locationSignal.color, valueSize: 17)
             Tile(title: "Kp", value: value(weatherService.snapshot.kp), detail: loading ? nil : "NOAA SWPC", color: .green.opacity(0.55), valueSize: 27)
             Tile(title: "GPS 精度", value: loading ? "—" : (locationManager.horizontalAccuracy.map { "\($0.formatted(.number.precision(.fractionLength(0)))) m" } ?? "—"), detail: "Core Location", color: .green.opacity(0.55), valueSize: 19)
@@ -530,8 +530,8 @@ private struct Tile: View {
     private var sourceDescription: String {
         switch title {
         case "天氣", "溫度", "風速", "陣風／風級", "風向", "降雨機率", "雲覆蓋率": return "已驗證：中央氣象署 CWA F-D0047-089（全台鄉鎮逐 3 小時預報）。由 API 回傳資料更新。"
-        case "日出／日落": return "待接官方資料：中央氣象署 L-005。目前畫面數值為預設示範值，不能視為即時資料。"
-        case "能見度": return "待接實測資料：需使用中央氣象署測站／觀測 API。目前顯示值為單位換算示範。"
+        case "日出／日落": return "已驗證：中央氣象署 A-B0062-001 日出日沒時刻資料集，依目前縣市與日期更新。"
+        case "能見度": return "已驗證：中央氣象署 O-A0003-001 即時測站觀測資料，顯示距離目前座標最近測站的能見度。"
         case "定位訊號": return "已驗證：依 iPhone Core Location horizontalAccuracy 實測精度分級；iOS 公開 API 不提供可見衛星數量。"
         case "Kp": return "已驗證：NOAA SWPC planetary_k_index_1m.json。每次 CWA 更新時同步取得。"
         case "GPS 精度": return "已驗證：iPhone Core Location horizontalAccuracy，單位為公尺；不是衛星數量。"
