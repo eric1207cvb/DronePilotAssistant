@@ -1,87 +1,48 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0e1d38" />
-  <title>Taiwan Drone Pilot Assistant｜台灣空拍機飛行助手</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taiwan Drone Pilot Assistant 隱私權政策</title>
   <style>
-    :root{--navy:#0d1d38;--ink:#13233d;--muted:#8290a5;--blue:#2f7df4;--blue2:#68b7ff;--line:#e3eaf4;--green:#2ac68d;--orange:#f6a84a;--red:#eb6a6a;--bg:#f5f8fc}
-    *{box-sizing:border-box}body{margin:0;background:#dfe8f3;color:var(--ink);font-family:'Noto Sans TC',sans-serif}button,input{font:inherit}.app{max-width:480px;min-height:100vh;margin:auto;background:var(--bg);box-shadow:0 0 36px #0c1d3820;position:relative;padding-bottom:88px}.top{background:linear-gradient(140deg,#0b1a34 2%,#15335c 58%,#236bb5);color:#fff;padding:17px 20px 20px;border-radius:0 0 28px 28px}.status{display:flex;justify-content:space-between;font-size:12px;color:#b9c8dd;letter-spacing:.04em}.brand{display:flex;align-items:center;gap:12px;margin:27px 0 26px}.brand-mark{width:44px;height:44px;border:2px solid #70ceff;border-radius:13px;display:grid;place-items:center;color:#71e2e7;font-size:24px;transform:rotate(-9deg)}.brand h1{font-size:17px;line-height:1.2;margin:0;letter-spacing:.02em}.brand p{font-size:11px;color:#9eb9d9;margin:2px 0 0}.top-actions{margin-left:auto;display:flex;gap:8px}.icon-btn{border:1px solid #ffffff2e;color:#d9e8fb;background:#ffffff12;border-radius:10px;width:34px;height:34px;cursor:pointer}.search{background:#fff;border-radius:15px;padding:5px;display:flex;align-items:center;gap:8px}.search input{border:0;outline:0;width:100%;padding:11px 5px;color:var(--ink);font-size:14px}.search button{border:0;background:var(--blue);color:#fff;border-radius:10px;padding:9px 12px;cursor:pointer;font-size:13px}.content{padding:19px 17px}.greeting{display:flex;justify-content:space-between;align-items:end;margin-bottom:14px}.greeting h2{font-size:18px;margin:0}.greeting p{font-size:12px;color:var(--muted);margin:4px 0 0}.pill{font-size:11px;color:#178864;background:#dff8ec;border-radius:20px;padding:6px 9px}.main-card{background:linear-gradient(135deg,#ffffff,#edf5ff);border:1px solid #dce8f6;border-radius:20px;padding:18px;box-shadow:0 8px 20px #294e7510;margin-bottom:14px}.flight-title{display:flex;justify-content:space-between;align-items:start}.eyebrow{color:var(--muted);font-size:12px}.flight-title h3{font-size:25px;margin:3px 0}.score{background:#fff1e0;color:#ba6a11;border-radius:12px;padding:8px 10px;text-align:center;font-size:11px}.score b{display:block;font-size:20px}.summary{display:flex;align-items:center;gap:15px;margin:14px 0}.weather-icon{font-size:48px}.temp{font-size:37px;font-weight:700;line-height:1}.temp small{font-size:15px;font-weight:500}.summary strong{font-size:13px}.summary p{margin:4px 0 0;color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 14px;min-height:86px}.metric label{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}.metric b{font-size:20px}.metric b.green{color:#149d72}.metric b.red{color:#df5d5d}.metric b.orange{color:#cc7e16}.section-head{display:flex;justify-content:space-between;align-items:center;margin:23px 0 10px}.section-head h3{font-size:16px;margin:0}.text-btn{border:0;background:none;color:var(--blue);font-size:12px;cursor:pointer}.rule-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:10px}.rule-top{display:flex;gap:10px;align-items:flex-start}.rule-icon{width:33px;height:33px;border-radius:10px;display:grid;place-items:center;font-size:18px;flex:0 0 auto}.ok{background:#dff8ed;color:#15936e}.warn{background:#fff0d8;color:#cc7e16}.danger{background:#ffe2e2;color:#d95757}.rule-card strong{font-size:14px}.rule-card p{color:var(--muted);font-size:11px;line-height:1.6;margin:4px 0 0}.tag{display:inline-block;border-radius:6px;font-size:10px;padding:3px 7px;margin-top:10px}.tag.green{background:#e5faf1;color:#188e6b}.tag.orange{background:#fff2de;color:#b97216}.map{height:172px;border-radius:16px;overflow:hidden;position:relative;background:#cfe5e3;isolation:isolate}.map:before{content:"";position:absolute;inset:-40px;background:linear-gradient(25deg,transparent 48%,#a7c9c7 49%,#a7c9c7 51%,transparent 52%),linear-gradient(130deg,transparent 47%,#a7c9c7 48%,#a7c9c7 49%,transparent 50%),#d8eceb;opacity:.8}.map:after{content:"";position:absolute;width:190px;height:190px;border:22px solid #f3a6a655;border-radius:50%;left:44px;top:27px}.map svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}.pin{position:absolute;z-index:2;left:53%;top:45%;width:18px;height:18px;background:#ef6868;border:4px solid #fff;border-radius:50%;box-shadow:0 2px 7px #234}.map-label{position:absolute;z-index:3;left:15px;top:13px;background:#ffffffdd;border-radius:8px;padding:7px 9px;font-size:11px}.legend{position:absolute;z-index:3;right:12px;bottom:11px;background:#fffddfdd;border-radius:8px;padding:6px 8px;font-size:10px}.ad{background:#fff;border:1px dashed #cdd8e6;border-radius:14px;text-align:center;color:#a2afc0;padding:10px;margin-top:18px;font-size:10px}.pro-banner{display:flex;align-items:center;gap:11px;background:#172f53;color:#fff;border-radius:16px;padding:13px 14px;margin-top:12px}.pro-banner span{font-size:21px}.pro-banner div{flex:1}.pro-banner strong{display:block;font-size:13px}.pro-banner small{color:#a9beda;font-size:10px}.pro-banner button{border:0;background:#ffd05b;color:#30250a;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:700;cursor:pointer}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,100%);height:78px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:10}.nav-item{border:0;background:none;color:#94a1b3;font-size:10px;cursor:pointer}.nav-item .nav-icon{display:block;font-size:22px;margin-bottom:3px}.nav-item.active{color:var(--blue);font-weight:700}.modal-back{position:fixed;inset:0;background:#07152a99;display:none;place-items:center;z-index:20;padding:22px}.modal-back.show{display:grid}.modal{width:min(380px,100%);background:#fff;border-radius:22px;padding:24px;box-shadow:0 20px 60px #00142d66}.modal h3{margin:0 0 8px}.modal p{color:var(--muted);font-size:13px;line-height:1.7}.plans{display:flex;gap:9px;margin:16px 0}.plan{flex:1;border:1px solid var(--line);padding:12px 8px;border-radius:12px;text-align:center;font-size:12px}.plan.selected{border:2px solid var(--blue);padding:11px 7px;background:#f1f7ff}.plan b{display:block;font-size:19px;margin-top:4px}.modal-actions{display:flex;gap:8px}.modal-actions button{flex:1;border:0;border-radius:11px;padding:11px;cursor:pointer}.close{background:#eef2f7;color:#65748a}.buy{background:var(--blue);color:#fff}.toast{position:fixed;left:50%;bottom:95px;transform:translateX(-50%) translateY(14px);background:#142844;color:#fff;border-radius:12px;padding:10px 15px;font-size:12px;opacity:0;transition:.25s;z-index:30}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    body { font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif; line-height: 1.7; max-width: 760px; margin: 0 auto; padding: 32px 20px; color: #1c1c1e; }
+    h1 { line-height: 1.25; } h2 { margin-top: 28px; } .updated { color: #666; }
   </style>
 </head>
 <body>
-  <main class="app">
-    <header class="top">
-      <div class="status"><span>☀ 15:46</span><span>●●● 4G　▰</span></div>
-      <div class="brand"><div class="brand-mark">✈</div><div><h1>Taiwan Drone Pilot Assistant</h1><p>你的台灣空拍機飛行助手</p></div><div class="top-actions"><button class="icon-btn" aria-label="收藏">☆</button><button class="icon-btn" aria-label="分享">↗</button></div></div>
-      <div class="search"><span style="font-size:18px;padding-left:8px">⌕</span><input id="locationInput" value="台北市大安區" aria-label="搜尋地點"><button id="searchBtn">查詢</button></div>
-    </header>
-    <section class="content">
-      <div class="greeting"><div><h2 id="placeTitle">台北市大安區</h2><p>最後更新：少於一分鐘前 · 中央氣象署</p></div><span class="pill">定位成功</span></div>
-      <article class="main-card">
-        <div class="flight-title"><div><span class="eyebrow">目前飛行建議</span><h3>適合飛行</h3></div><div class="score"><b>82</b>安全指數</div></div>
-        <div class="summary"><div class="weather-icon">☁</div><div><div class="temp">−1<small>°C</small></div><strong>多雲 · 天氣觀測</strong><p>資料來源：中央氣象署開放資料平台</p></div></div>
-        <div class="grid"><div class="metric"><label>風速</label><b>8 <small>mph</small></b></div><div class="metric"><label>陣風</label><b class="orange">8 <small>mph</small></b></div><div class="metric"><label>降雨機率</label><b class="green">10%</b></div><div class="metric"><label>雲覆蓋率</label><b>94%</b></div><div class="metric"><label>能見度</label><b>3 <small>miles</small></b></div><div class="metric"><label>風向</label><b>↘ <small>南</small></b></div></div>
-      </article>
-      <article class="rule-card"><div class="rule-top"><div class="rule-icon warn">☀</div><div><strong>日出／日落</strong><p>今日可用日照時段</p><div style="font-size:20px;margin-top:5px">↑ 06:23　 ↓ 16:49</div></div></div></article>
-      <div class="section-head"><h3>台灣空域規範偵測</h3><button class="text-btn" id="officialBtn">查看官方資料 ↗</button></div>
-      <article class="rule-card"><div class="rule-top"><div class="rule-icon ok">✓</div><div><strong>附近沒有禁飛區</strong><p>已比對民航局及地方政府公告圖資；仍須以現場公告與最新資料為準。</p></div></div><span class="tag green">可飛 · 低風險</span></article>
-      <article class="rule-card"><div class="rule-top"><div class="rule-icon warn">!</div><div><strong>飛行高度建議不超過 120 公尺</strong><p>若涉及機場周邊、限制區域或其他特殊活動，請先完成申請與核准。</p></div></div><span class="tag orange">請確認操作證與機體註冊</span></article>
-      <div class="section-head"><h3>台灣空域與法規</h3><button class="text-btn" id="lawBtn">開啟民航局 ↗</button></div>
-      <div class="grid">
-        <div class="metric"><label>目前空域</label><b class="green">可飛</b><small style="display:block;color:var(--muted);margin-top:4px">圖資比對中</small></div>
-        <div class="metric"><label>附近禁限航區</label><b class="green">0</b><small style="display:block;color:var(--muted);margin-top:4px">以官方公告為準</small></div>
-        <div class="metric"><label>高度提醒</label><b>400 <small>ft</small></b><small style="display:block;color:var(--muted);margin-top:4px">約 122 m 上限提醒</small></div>
-        <div class="metric"><label>飛行申請</label><b class="orange">待確認</b><small style="display:block;color:var(--muted);margin-top:4px">依空域與任務判定</small></div>
-        <div class="metric"><label>機體登錄</label><b class="orange">待確認</b><small style="display:block;color:var(--muted);margin-top:4px">請於設定完成</small></div>
-        <div class="metric"><label>操作證</label><b class="orange">待確認</b><small style="display:block;color:var(--muted);margin-top:4px">依機體與活動判定</small></div>
-      </div>
-      <article class="rule-card"><div class="rule-top"><div class="rule-icon warn">▣</div><div><strong>其他法規與臨時公告</strong><p>空域圖資不排除國家公園法、商港法及地方政府公告；活動、軍事或特殊區域可能隨時變更，飛行前請再次查詢。</p></div></div><span class="tag orange">保險／公告／主管機關核准：待確認</span></article>
-      <div class="section-head"><h3>附近空域地圖</h3><button class="text-btn" id="mapBtn">放大地圖</button></div>
-      <div class="map"><svg id="airspaceLayer" viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="民航局空域 GeoJSON 圖層"></svg><div class="map-label">◎ 目前位置　大安森林公園</div><div class="pin"></div><div class="legend">橘色：民航局空域圖資</div><div style="position:absolute;z-index:3;left:15px;bottom:11px;background:#ffffffdd;border-radius:8px;padding:6px 8px;font-size:9px">資料來源：交通部民航局<br>僅供參考，以最新公告為準</div></div>
-      <div class="section-head"><h3>飛行前檢查</h3><span class="eyebrow">2 / 4 完成</span></div>
-      <div class="grid"><div class="metric"><label>可見的衛星</label><b class="green">14</b></div><div class="metric"><label>Kp</label><b class="green">1</b></div><div class="metric"><label>衛星鎖定</label><b class="green">13.9</b></div><div class="metric"><label>資料來源</label><b style="font-size:14px">CWA</b></div></div>
-      <article class="rule-card"><div class="rule-top"><div class="rule-icon ok">✓</div><div><strong>天候條件</strong><p>風速、降雨、能見度皆在建議範圍內</p></div></div></article>
-      <article class="rule-card"><div class="rule-top"><div class="rule-icon danger">×</div><div><strong>飛行許可與保險</strong><p>請確認任務是否需要申請，並備妥相關文件</p></div></div><span class="tag orange">前往檢查清單</span></article>
-      <div class="ad">廣告 · 支持 Taiwan Drone Pilot Assistant 持續提供免費飛行資訊</div>
-      <div class="pro-banner"><span>✦</span><div><strong>升級 Taiwan Drone Pilot Assistant Pro</strong><small>移除廣告 · 進階預報 · 無限收藏地點</small></div><button id="proBtn">了解 Pro</button></div>
-    </section>
-    <nav class="bottom"><button class="nav-item active"><span class="nav-icon">⌂</span>飛行</button><button class="nav-item"><span class="nav-icon">▣</span>預報</button><button class="nav-item"><span class="nav-icon">♧</span>風速表</button><button class="nav-item"><span class="nav-icon">⌖</span>空域</button><button class="nav-item"><span class="nav-icon">⚙</span>設定</button></nav>
-  </main>
-  <div class="modal-back" id="modalBack"><div class="modal"><h3>升級 Taiwan Drone Pilot Assistant Pro</h3><p>專注飛行，不被廣告打擾。升級後可移除廣告，並解鎖更多飛行地點與 7 日預報。</p><div class="plans"><div class="plan selected">月訂閱<b>NT$60</b></div><div class="plan">年訂閱<b>NT$490</b></div></div><div class="modal-actions"><button class="close" id="closeModal">稍後再說</button><button class="buy" id="buyBtn">開始升級</button></div></div></div>
-  <div class="toast" id="toast"></div>
-  <script>
-    const input=document.querySelector('#locationInput'), title=document.querySelector('#placeTitle'), toast=document.querySelector('#toast');
-    function showToast(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2400)}
-    let lastWeatherRequest=0;
-    function drawAirspace(geojson){
-      const layer=document.querySelector('#airspaceLayer');layer.innerHTML='';
-      const center={lng:121.5350,lat:25.0268}, scale=5000;
-      const project=([lng,lat])=>[50+(lng-center.lng)*scale,50-(lat-center.lat)*scale];
-      const addRing=ring=>{const points=ring.map(project).map(([x,y])=>`${x},${y}`).join(' ');const polygon=document.createElementNS('http://www.w3.org/2000/svg','polygon');polygon.setAttribute('points',points);polygon.setAttribute('fill','#f59b6b66');polygon.setAttribute('stroke','#df6a4f');polygon.setAttribute('stroke-width','0.8');layer.appendChild(polygon)};
-      (geojson?.features||[]).forEach(feature=>{const geometry=feature.geometry||{};if(geometry.type==='Polygon')(geometry.coordinates||[]).forEach(addRing);if(geometry.type==='MultiPolygon')(geometry.coordinates||[]).flat(1).forEach(addRing)});
-    }
-    async function loadAirspace(){
-      try{const response=await fetch('/api/airspace?lat=25.0268&lng=121.5350');if(!response.ok)throw new Error('API');const result=await response.json();const count=result.nearbyZones.length;drawAirspace(result.geojson);showToast(`民航局 GeoJSON 圖資已更新：附近 ${count} 筆資料`)}catch(error){showToast('空域圖資暫時無法更新，畫面僅供參考')}
-    }
-    async function loadWeather(){
-      if(Date.now()-lastWeatherRequest<30000){showToast('請稍候，避免過度查詢氣象資料');return}
-      lastWeatherRequest=Date.now();
-      const location=input.value.trim()||'大安區';
-      title.textContent=location;
-      try{const response=await fetch(`/api/weather?location=${encodeURIComponent(location)}`);if(!response.ok) throw new Error('API');await response.json();showToast('已更新中央氣象署資料')}catch(error){showToast('目前顯示示範資料，請確認 API 設定')}}
-    document.querySelector('#searchBtn').onclick=loadWeather;
-    document.querySelector('#officialBtn').onclick=()=>window.open('https://drone.caa.gov.tw/','_blank');
-    document.querySelector('#lawBtn').onclick=()=>window.open('https://drone.caa.gov.tw/','_blank');
-    loadAirspace();
-    document.querySelector('#mapBtn').onclick=()=>showToast('地圖模式即將串接即時圖資');
-    const modal=document.querySelector('#modalBack');document.querySelector('#proBtn').onclick=()=>modal.classList.add('show');document.querySelector('#closeModal').onclick=()=>modal.classList.remove('show');
-    document.querySelector('#buyBtn').onclick=()=>{modal.classList.remove('show');showToast('App Store 付款流程預留完成')};
-    document.querySelectorAll('.nav-item').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));btn.classList.add('active');showToast(`${btn.textContent.trim()} 功能頁`)});
-  </script>
+  <h1>Taiwan Drone Pilot Assistant 隱私權政策</h1>
+  <p class="updated">最後更新日期：2026 年 9 月 17 日</p>
+
+  <p>本隱私權政策說明 Taiwan Drone Pilot Assistant（以下稱「本 App」）如何處理使用者資料。本 App 的功能是提供台灣無人機飛行資訊與官方資料查詢輔助。</p>
+
+  <h2>一、我們可能處理的資料</h2>
+  <ul>
+    <li><strong>位置資料：</strong>在使用者授權後，透過 iPhone Core Location 取得目前位置，用於查詢天氣、地址與民航局空域資料。位置資料不會被本 App 作為個人帳戶資料出售。</li>
+    <li><strong>使用者輸入：</strong>使用者輸入的地點或地址可能被送至地圖、天氣或地點搜尋服務，以完成查詢。</li>
+    <li><strong>訂閱資料：</strong>訂閱交易由 Apple App Store 處理；RevenueCat 只接收必要的訂閱狀態與匿名 App User ID，用於判斷 Pro 權益。</li>
+    <li><strong>廣告資料：</strong>免費版可能使用 Google Mobile Ads。廣告服務可能依其自身政策處理裝置與廣告相關資訊。</li>
+    <li><strong>技術資料：</strong>服務可能收到 IP 位址、錯誤紀錄、裝置與連線資訊，用於安全性、除錯與提供服務。</li>
+  </ul>
+
+  <h2>二、資料用途</h2>
+  <p>資料僅用於提供地點定位、天氣查詢、官方空域資料查詢、訂閱權益、廣告顯示、服務安全與錯誤排查。</p>
+
+  <h2>三、第三方服務</h2>
+  <p>本 App 可能使用 Apple MapKit、中央氣象署開放資料、交通部民用航空局空域圖資、RevenueCat、Google Mobile Ads，以及使用者選用的地點搜尋備援服務。各服務依其自身隱私政策處理資料。</p>
+
+  <h2>四、資料保存與安全</h2>
+  <p>本 App 盡量在裝置端完成定位與資料整理。第三方服務的保存期間依其政策及必要的服務、法律與安全需求決定。我們會採取合理措施保護資料，但網路傳輸不存在絕對安全的保證。</p>
+
+  <h2>五、使用者選擇</h2>
+  <p>使用者可以在 iPhone「設定」中撤銷定位權限，也可以不使用需要位置的功能。刪除 App 可移除裝置端的 App 資料。訂閱可透過 Apple 帳號的訂閱管理功能取消。</p>
+
+  <h2>六、兒童隱私</h2>
+  <p>本 App 並非特別針對兒童設計，也不會刻意蒐集兒童個人資料。</p>
+
+  <h2>七、政策更新</h2>
+  <p>本政策可能因功能、服務或法規變更而更新。更新後會在本頁公布新的最後更新日期。</p>
+
+  <h2>八、聯絡方式</h2>
+  <p>若對本政策有疑問，請寄信至 <a href="mailto:eric1207cvb@msn.com">eric1207cvb@msn.com</a> 與我們聯繫。</p>
 </body>
 </html>
