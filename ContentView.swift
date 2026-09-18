@@ -357,7 +357,7 @@ struct ContentView: View {
                         .opacity(0.9)
                 }
                 .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, minHeight: 70)
+                .frame(maxWidth: .infinity, minHeight: 145)
                 .padding(.vertical, 6)
                 .padding(.horizontal, 2)
                 .background(Color.blue, in: RoundedRectangle(cornerRadius: 12))
