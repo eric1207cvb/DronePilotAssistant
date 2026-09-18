@@ -11,7 +11,7 @@
 - 若任何後端金鑰曾被貼到公開場所，請立即在服務商後台撤銷並重新建立，不要只修改 Git 歷史。
 - 隱私權政策頁面位於 [`privacy-policy.html`](./privacy-policy.html)，GitHub Pages 發佈後網址為：<https://eric1207cvb.github.io/DronePilotAssistant/privacy-policy.html>。
 
-實體 iPhone 測試時，請讓 Mac 與 iPhone 連接同一個 Wi-Fi，並在 App「設定 → 備援服務」填入 Mac 的區域網路 IP；Simulator 可使用 `http://127.0.0.1:8000`。請確認 Mac 防火牆允許 Node 服務接收區域網路連線。
+後端備援服務由 App 內部執行，不在使用者介面顯示或提供 IP 設定欄位。Simulator 可使用 `http://127.0.0.1:8000`；正式部署時請在程式內改用受保護的後端網址，並確認伺服器端金鑰只存在環境變數。
 
 AdMob App ID 已設定為 `ca-app-pub-8563333250584395~5797408070`，Banner Ad Unit ID 已設定為 `ca-app-pub-8563333250584395/8231999725`。請在 Xcode 以 `File → Add Package Dependencies` 加入 `https://github.com/googleads/swift-package-manager-google-mobile-ads.git`；Debug 會使用 Google 測試 Banner，Release 才使用正式廣告單元。Banner 目前放在固定安全區域，會在可滑動內容與分頁按鈕列上方持續顯示，不會被捲動內容藏住或覆蓋格子。
 

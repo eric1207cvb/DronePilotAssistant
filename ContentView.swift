@@ -9,7 +9,6 @@ struct ContentView: View {
     @Environment(\.colorScheme) private var colorScheme
     @AppStorage("appearanceMode") private var appearanceMode = "system"
     @AppStorage("hasOfficialAirspaceApproval") private var hasOfficialAirspaceApproval = false
-    @AppStorage("backendBaseURL") private var backendBaseURL = "http://127.0.0.1:8000"
     @State private var location = "台北市大安區"
     @State private var resolvedPlaceName: String?
     @State private var showingCAAQuery = false
@@ -29,14 +28,6 @@ struct ContentView: View {
     private var columns: [GridItem] {
         let count = horizontalSizeClass == .regular ? 6 : 4
         return Array(repeating: GridItem(.flexible(), spacing: 8), count: count)
-    }
-
-    init() {
-        let defaults = UserDefaults.standard
-        let current = defaults.string(forKey: "backendBaseURL")
-        if current == nil || current == "http://127.0.0.1:8000" {
-            defaults.set("http://127.0.0.1:8000", forKey: "backendBaseURL")
-        }
     }
 
     var body: some View {
@@ -255,9 +246,6 @@ struct ContentView: View {
                     }
                 }
                 Button("恢復購買") { Task { await subscriptionManager.restore() } }
-            }
-            Section("備援服務") {
-                TextField("後端網址", text: $backendBaseURL).textInputAutocapitalization(.never).autocorrectionDisabled()
             }
             Section("法律與隱私") {
                 Link("隱私權政策", destination: URL(string: "https://eric1207cvb.github.io/DronePilotAssistant/privacy-policy.html")!)
@@ -573,10 +561,7 @@ private final class AirspaceService: ObservableObject {
     private var task: Task<Void, Never>?
     private let localIndex: LocalIndex
 
-    private var backendBaseURL: String {
-        let value = UserDefaults.standard.string(forKey: "backendBaseURL") ?? "http://127.0.0.1:8000"
-        return value.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-    }
+    private let backendBaseURL = "http://127.0.0.1:8000"
 
     init() {
         if let url = Bundle.main.url(forResource: "NoFlyZones", withExtension: "json"),

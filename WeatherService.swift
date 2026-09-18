@@ -60,8 +60,7 @@ final class WeatherService: ObservableObject {
     var isBusy: Bool { isResolvingLocation || isLoading }
 
     private var backendBaseURL: String {
-        let value = UserDefaults.standard.string(forKey: "backendBaseURL") ?? "http://127.0.0.1:8000"
-        return value.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        return "http://127.0.0.1:8000"
     }
 
     func load(coordinate: CLLocationCoordinate2D) {
