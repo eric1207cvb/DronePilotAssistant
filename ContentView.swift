@@ -137,7 +137,6 @@ struct ContentView: View {
             pageButton("條件", "sun.max.fill", 0)
             pageButton("預測", "calendar", 1)
             pageButton("地圖", "map.fill", 2)
-            pageButton("設定", "gearshape.fill", 3)
         }
         .padding(5).glassEffect(.regular, in: RoundedRectangle(cornerRadius: 17))
         .padding(.horizontal, 10).padding(.vertical, 8)
@@ -257,7 +256,7 @@ struct ContentView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 14) {
-            HStack { Image(systemName: "paperplane.circle.fill").font(.system(size: 42)).foregroundStyle(.cyan, .white); Text("Taiwan Drone Pilot Assistant").font(.system(size: 20, weight: .bold, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.72); Spacer(); Image(systemName: "square.and.arrow.up").font(.title3).foregroundStyle(.white.opacity(0.9)) }
+            HStack { Image(systemName: "paperplane.circle.fill").font(.system(size: 42)).foregroundStyle(.cyan, .white); Text("Taiwan Drone Pilot Assistant").font(.system(size: 20, weight: .bold, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.72); Spacer(); Button { selectedTab = 3 } label: { Image(systemName: "gearshape.fill").font(.title3).foregroundStyle(.white.opacity(0.95)).frame(width: 42, height: 42) }.accessibilityLabel("設定") }
             HStack(spacing: 7) { Image(systemName: "magnifyingglass").foregroundStyle(.secondary); TextField("輸入地址或地標", text: $location).font(.subheadline).focused($searchFocused).submitLabel(.search).onSubmit { performSearch() }; Button { performSearch() } label: { Text("查詢") }.buttonStyle(.borderedProminent).tint(.blue).disabled(refreshing); Button { searchSessionActive = true; searchFocused = false; locationManager.requestLocation(); queryMessage = "正在取得 iPhone GPS…" } label: { Image(systemName: "location.fill") }.buttonStyle(.bordered).tint(.blue).disabled(refreshing) }.padding(7).glassEffect(.regular.tint(colorScheme == .dark ? Color.black.opacity(0.28) : Color.white.opacity(0.95)), in: RoundedRectangle(cornerRadius: 13))
         }.padding(.horizontal, 14).padding(.top, 8).padding(.bottom, 10).background(LinearGradient(colors: colorScheme == .dark ? [Color(red: 0.05, green: 0.24, blue: 0.48), Color(red: 0.08, green: 0.12, blue: 0.28)] : [Color(red: 0.30, green: 0.68, blue: 0.94), Color(red: 0.18, green: 0.43, blue: 0.80)], startPoint: .topLeading, endPoint: .bottomTrailing))
     }
