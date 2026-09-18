@@ -347,6 +347,22 @@ struct ContentView: View {
             Tile(title: "目前空域", value: assessment.title, detail: assessment.zone, color: assessment.tint.opacity(0.55), valueSize: 17)
             Tile(title: "禁限航區", value: assessment.isProhibited ? "禁飛" : "待確認", detail: assessment.isProhibited ? "需官方申請" : "官方圖資", color: assessment.tint.opacity(0.55), valueSize: 23)
             Tile(title: "高度提醒", value: assessment.isProhibited ? "禁飛需官方申請" : (heightLimited ? "限高 200 呎" : "待確認"), detail: "以官方公告為準", color: assessment.isProhibited ? .red.opacity(0.48) : (heightLimited ? .yellow.opacity(0.55) : .yellow.opacity(0.35)), valueSize: 15)
+            Button { openCAAQuery() } label: {
+                VStack(spacing: 5) {
+                    Label("民航局真實圖資", systemImage: "map.fill")
+                        .font(.system(size: 13, weight: .semibold))
+                        .multilineTextAlignment(.center)
+                    Text("官方 GIS 查詢")
+                        .font(.system(size: 9, weight: .medium))
+                        .opacity(0.9)
+                }
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity, minHeight: 70)
+                .padding(.vertical, 6)
+                .padding(.horizontal, 2)
+                .background(Color.blue, in: RoundedRectangle(cornerRadius: 12))
+            }
+            .buttonStyle(.plain)
         }
     }
 
@@ -355,13 +371,6 @@ struct ContentView: View {
         return VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text("台灣空域與法規").font(.headline)
-                Spacer()
-                Button { openCAAQuery() } label: {
-                    Label("官方 GIS 複核", systemImage: "map.fill")
-                        .font(.caption.weight(.semibold))
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
             }
             if assessment.isUnknown {
                 VStack(alignment: .leading, spacing: 9) {
