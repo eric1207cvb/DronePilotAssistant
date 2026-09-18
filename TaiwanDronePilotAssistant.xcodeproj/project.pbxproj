@@ -117,11 +117,6 @@
 				TargetAttributes = {
 					A10000000000000000000020 = {
 						CreatedOnToolsVersion = 27.0;
-						SystemCapabilities = {
-							com.apple.In-App-Purchase = {
-								enabled = 1;
-							};
-						};
 					};
 				};
 			};
