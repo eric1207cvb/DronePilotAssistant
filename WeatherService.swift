@@ -354,7 +354,12 @@ private func fetchVisibility(coordinate: CLLocationCoordinate2D, authorization: 
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { return "—" }
         let decoded = try JSONDecoder().decode(VisibilityResponse.self, from: data)
-        let nearest = decoded.records.stations.min { lhs, rhs in
+        let candidates = decoded.records.stations.filter { station in
+            guard let raw = station.weather.description?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !raw.isEmpty, raw != "-99", raw != "X" else { return false }
+            return stationDistance(station, from: coordinate) < .greatestFiniteMagnitude
+        }
+        let nearest = candidates.min { lhs, rhs in
             stationDistance(lhs, from: coordinate) < stationDistance(rhs, from: coordinate)
         }
         guard let raw = nearest?.weather.description?.trimmingCharacters(in: .whitespacesAndNewlines),
